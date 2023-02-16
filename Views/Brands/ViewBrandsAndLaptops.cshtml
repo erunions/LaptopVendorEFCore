@@ -1,0 +1,18 @@
+﻿@model Dictionary<Brand, List<Laptop>>
+
+<h1>View all brands and laptops</h1>
+@foreach((Brand b, List<Laptop> lList) in Model) {
+    <div>
+        <h2>@b.Name</h2>
+        @foreach(Laptop l in lList) {
+            <div class="card" style="width: 18rem; display: inline-block">
+                <div class="card-body">
+                    <h4 class="card-title">@l.Model</h4>
+                    <p class="card-text">Price: $@l.Price</p>
+                    <p class="card-text">Year: @l.Year</p>
+                    <p class="card-text">Id: @l.Id</p>
+                </div>
+            </div>
+        }
+    </div>
+}

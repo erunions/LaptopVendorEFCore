@@ -1,0 +1,15 @@
+﻿@using LaptopVendorEFCore.Models
+@model Laptop[]
+
+<h1>View 2 most expensive laptops</h1>
+@foreach(Laptop l in Model) {
+    <div class="card" style="width: 18rem; display: inline-block">
+        <div class="card-body">
+            <h4 class="card-title">@l.Model</h4>
+            <p class="card-text">Brand: @l.Brand.Name</p>
+            <p class="card-text">Price: $@l.Price</p>
+            <p class="card-text">Year: @l.Year</p>
+            <p class="card-text">Id: @l.Id</p>
+        </div>
+    </div>
+}

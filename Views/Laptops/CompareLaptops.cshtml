@@ -1,0 +1,49 @@
+﻿@using LaptopVendorEFCore.Models.ViewModels
+@model CompareLaptopsModel
+
+<h1>Compare 2 laptops</h1>
+<form method="post">
+    <label asp-for="ModelSelection1">Laptop 1</label>
+    <select asp-for="ModelSelection1" asp-items="CompareLaptopsModel.LaptopNames"></select>
+
+    <label asp-for="ModelSelection2">Laptop 2</label>
+    <select asp-for="ModelSelection2" asp-items="CompareLaptopsModel.LaptopNames"></select>
+
+    <button type="submit" class="btn btn-primary">Compare</button>
+</form>
+
+@if(Model.Selection1 != null && Model.Selection2 != null) {
+    Laptop l1 = Model.Selection1;
+    Laptop l2 = Model.Selection2;
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">@l1.Model</th>
+                <th scope="col">@l2.Model</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Brand</th>
+                <td>@l1.Brand.Name</td>
+                <td>@l2.Brand.Name</td>
+            </tr>
+            <tr>
+                <th scope="row">Price</th>
+                <td>$@l1.Price</td>
+                <td>$@l2.Price</td>
+            </tr>
+            <tr>
+                <th scope="row">Year</th>
+                <td>@l1.Year</td>
+                <td>@l2.Year</td>
+            </tr>
+            <tr>
+                <th scope="row">Id</th>
+                <td>@l1.Id</td>
+                <td>@l2.Id</td>
+            </tr>
+        </tbody>
+    </table>
+}

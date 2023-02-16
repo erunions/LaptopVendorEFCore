@@ -1,0 +1,40 @@
+﻿@using LaptopVendorEFCore.Models.ViewModels
+@model ViewLaptopsByBrandModel
+
+<h1>View Laptops By Brand</h1>
+<form method="post">
+    <label asp-for="BrandSelection">Select a brand:</label>
+    <select asp-for="BrandSelection" asp-items="Model.BrandOptions"></select>
+
+    <br />
+    <label asp-for="Ordering">Select a method to order the results:</label>
+    <select asp-for="Ordering" asp-items="ViewLaptopsByBrandModel.OrderingOptions"></select>
+
+    <br />
+    <label asp-for="Filtering">Select a method to filter the results:</label>
+    <select asp-for="Filtering" asp-items="ViewLaptopsByBrandModel.FilterOptions"></select>
+
+    <label asp-for="FilterValue">Filter Value</label>
+    <input type="number" asp-for="FilterValue" />
+
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@if(!string.IsNullOrEmpty(Model.BrandSelection)) {
+    if(Model.Results.Count > 0) {
+        foreach(Laptop l in Model.Results) {
+            <div class="card" style="width: 18rem; display: inline-block">
+                <div class="card-body">
+                    <h4 class="card-title">@l.Model</h4>
+                    <p class="card-text">Brand: @l.Brand.Name</p>
+                    <p class="card-text">Price: $@l.Price</p>
+                    <p class="card-text">Year: @l.Year</p>
+                    <p class="card-text">Id: @l.Id</p>
+                </div>
+            </div>
+        }
+    } else {
+        <h2>We couldn't find any laptops that match your search criteria</h2>
+    }
+}

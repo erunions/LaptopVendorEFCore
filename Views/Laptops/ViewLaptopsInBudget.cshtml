@@ -1,0 +1,27 @@
+﻿@using LaptopVendorEFCore.Models.ViewModels
+@model ViewLaptopsInBudgetModel
+
+<h1>View laptops in budget</h1>
+<form method="post">
+    <label asp-for="Budget" class="form-label mb-3">Please enter a budget below:</label>
+    <input asp-for="Budget" type="number" class="form-control"/>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@if(Model.Results.Count > 0) {
+    <h2>Laptops priced at $@Model.Budget or lower:</h2>
+    foreach(Laptop l in Model.Results) {
+        <div class="card" style="width: 18rem; display: inline-block">
+            <div class="card-body">
+                <h4 class="card-title">@l.Model</h4>
+                <p class="card-text">Brand: @l.Brand.Name</p>
+                <p class="card-text">Price: $@l.Price</p>
+                <p class="card-text">Year: @l.Year</p>
+                <p class="card-text">Id: @l.Id</p>
+            </div>
+        </div>
+    }
+} else if(Model.Budget != 0) {
+    <h2>We couldn't find any laptops in that price range</h2>
+}
